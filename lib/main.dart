@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
 
@@ -25,9 +26,9 @@ String rowToString(List<String> row) {
 bool validate(int row, int column, List<List<String>> board) {
   return board[row][column] == ' ';
 }
-List<List<String>> createBoard() {
+List<List<Icon>> createBoard() {     //LIST OF LIST OF ICONS
   var boardSize = 3;
-  return List.generate(boardSize, (_) => List.filled(boardSize, ' '));
+  return List.generate(boardSize, (_) => List.filled(boardSize,null));
 }
 class TicTacToePage extends StatefulWidget {
   @override
@@ -35,8 +36,9 @@ class TicTacToePage extends StatefulWidget {
 }
 
 class _TicTacToePageState extends State<TicTacToePage> {
-  String currentPlayer="X";
-  List<List<String>> board = createBoard();
+  Icon currentPlayer=Icon(Icons.close,color: Colors.white,size: 100,);
+  String player='X';
+  List<List<Icon>> board = createBoard();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +57,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text('Tic-Tac-Toe',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40,color: Colors.white )),
-              Text('Player $currentPlayer to move',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white70)),
+              Text('Player $player to move',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white70)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -64,22 +66,27 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: ()
                       {
+                          setState(() {
+                            board[0][0]=currentPlayer;
+                          });
 
-                        setState(() {
-                          board[0][0]=currentPlayer;
-                          if (currentPlayer == 'X') {
-                            currentPlayer = 'O';
+                          if (player == 'X') {
+                            player = 'O';
+                            currentPlayer = Icon(FontAwesomeIcons.circle,color: Colors.white,size: 100,);
                           } else {
-                            currentPlayer = 'X';
+
+                            player = 'X';
+                            currentPlayer = Icon(Icons.close,color: Colors.white,size: 100,);;
                           }
-                        });
+
+
                         // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(color: Colors.blue.withOpacity(0.4),borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height:100,
-                        child:   Center(child: Text('${board[0][0]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50,color: Colors.white ))),
+                        child: board[0][0],
                       ),
                     ),
                   ),
@@ -88,15 +95,27 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: ()
                       {
-
+                       /* if (currentPlayer == Icon(Icons.close)) {
+                          currentPlayer = Icon(FontAwesomeIcons.circle);
+                        } else {
+                          currentPlayer = Icon(Icons.close);
+                        }*/
                         setState(() {
                           board[0][1]=currentPlayer;
-                          if (currentPlayer == 'X') {
-                            currentPlayer = 'O';
-                          } else {
-                            currentPlayer = 'X';
-                          }
                         });
+
+                        if (player == 'X') {
+                          player = 'O';
+                          currentPlayer = Icon(FontAwesomeIcons.circle,color: Colors.white,size: 100,);
+                        } else {
+
+                          player = 'X';
+                          currentPlayer = Icon(Icons.close,color: Colors.white,size: 100,);;
+                        }
+
+
+
+
                        // printBoard(board);
                       },
                       child: Container(
@@ -104,7 +123,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
 
                         width: 100,
                         height:100,
-                        child:   Center(child: Text('${board[0][1]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50,color: Colors.white ))),
+                        child: board[0][1],
                       ),
                     ),
                   ),
@@ -113,22 +132,28 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: ()
                       {
-
                         setState(() {
                           board[0][2]=currentPlayer;
-                          if (currentPlayer == 'X') {
-                            currentPlayer = 'O';
-                          } else {
-                            currentPlayer = 'X';
-                          }
                         });
+
+
+
+                        if (player == 'X') {
+                          player = 'O';
+                          currentPlayer = Icon(FontAwesomeIcons.circle,color: Colors.white,size: 100,);
+                        } else {
+
+                          player = 'X';
+                          currentPlayer = Icon(Icons.close,color: Colors.white,size: 100,);;
+                        }
+
                        // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(color: Colors.blue.withOpacity(0.4),borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height:100,
-                        child:   Center(child: Text('${board[0][2]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50,color: Colors.white ))),
+                        child:board[0][2],
                       ),
                     ),
                   ),
@@ -142,22 +167,26 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: ()
                       {
-
                         setState(() {
                           board[1][0]=currentPlayer;
-                          if (currentPlayer == 'X') {
-                            currentPlayer = 'O';
-                          } else {
-                            currentPlayer = 'X';
-                          }
                         });
+
+                        if (player == 'X') {
+                          player = 'O';
+                          currentPlayer = Icon(FontAwesomeIcons.circle,color: Colors.white,size: 100,);
+                        } else {
+
+                          player = 'X';
+                          currentPlayer = Icon(Icons.close,color: Colors.white,size: 100,);;
+                        }
+
                         //printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(color: Colors.blue.withOpacity(0.4),borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height:100,
-                        child:   Center(child: Text('${board[1][0]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50,color: Colors.white ))),
+                        child:  board[1][0],
                       ),
                     ),
                   ),
@@ -166,15 +195,20 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: ()
                       {
-
                         setState(() {
                           board[1][1]=currentPlayer;
-                          if (currentPlayer == 'X') {
-                            currentPlayer = 'O';
-                          } else {
-                            currentPlayer = 'X';
-                          }
                         });
+
+
+                        if (player == 'X') {
+                          player = 'O';
+                          currentPlayer = Icon(FontAwesomeIcons.circle,color: Colors.white,size: 100,);
+                        } else {
+
+                          player = 'X';
+                          currentPlayer = Icon(Icons.close,color: Colors.white,size: 100,);;
+                        }
+
                         //printBoard(board);
                       },
                       child: Container(
@@ -182,7 +216,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
 
                         width: 100,
                         height:100,
-                        child:   Center(child: Text('${board[1][1]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50,color: Colors.white ))),
+                        child: board[1][1],
                       ),
                     ),
                   ),
@@ -191,22 +225,27 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: ()
                       {
-
                         setState(() {
                           board[1][2]=currentPlayer;
-                          if (currentPlayer == 'X') {
-                            currentPlayer = 'O';
-                          } else {
-                            currentPlayer = 'X';
-                          }
                         });
+
+
+                        if (player == 'X') {
+                          player = 'O';
+                          currentPlayer = Icon(FontAwesomeIcons.circle,color: Colors.white,size: 100,);
+                        } else {
+
+                          player = 'X';
+                          currentPlayer = Icon(Icons.close,color: Colors.white,size: 100,);;
+                        }
+
                        // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(color: Colors.blue.withOpacity(0.4),borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height:100,
-                        child:   Center(child: Text('${board[1][2]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50,color: Colors.white ))),
+                        child: board[1][2],
                       ),
                     ),
                   ),
@@ -220,22 +259,27 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: ()
                       {
-
                         setState(() {
                           board[2][0]=currentPlayer;
-                          if (currentPlayer == 'X') {
-                            currentPlayer = 'O';
-                          } else {
-                            currentPlayer = 'X';
-                          }
                         });
+
+
+                        if (player == 'X') {
+                          player = 'O';
+                          currentPlayer = Icon(FontAwesomeIcons.circle,color: Colors.white,size: 100,);
+                        } else {
+
+                          player = 'X';
+                          currentPlayer = Icon(Icons.close,color: Colors.white,size: 100,);;
+                        }
+
                        // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(color: Colors.blue.withOpacity(0.4),borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height:100,
-                        child:   Center(child: Text('${board[2][0]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50,color: Colors.white ))),
+                        child: board[2][0],
                       ),
                     ),
                   ),
@@ -244,15 +288,20 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: ()
                       {
-
                         setState(() {
                           board[2][1]=currentPlayer;
-                          if (currentPlayer == 'X') {
-                            currentPlayer = 'O';
-                          } else {
-                            currentPlayer = 'X';
-                          }
                         });
+
+
+                        if (player == 'X') {
+                          player = 'O';
+                          currentPlayer = Icon(FontAwesomeIcons.circle,color: Colors.white,size: 100,);
+                        } else {
+
+                          player = 'X';
+                          currentPlayer =Icon(Icons.close,color: Colors.white,size: 100,);;
+                        }
+
                        // printBoard(board);
                       },
                       child: Container(
@@ -260,7 +309,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
 
                         width: 100,
                         height:100,
-                        child:   Center(child: Text('${board[2][1]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50,color: Colors.white ))),
+                        child:  board[2][1],
                       ),
                     ),
                   ),
@@ -269,22 +318,28 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: ()
                       {
-
                         setState(() {
                           board[2][2]=currentPlayer;
-                          if (currentPlayer == 'X') {
-                            currentPlayer = 'O';
-                          } else {
-                            currentPlayer = 'X';
-                          }
                         });
+
+
+
+                        if (player == 'X') {
+                          player = 'O';
+                          currentPlayer = Icon(FontAwesomeIcons.circle,color: Colors.white,size: 100,);
+                        } else {
+
+                          player = 'X';
+                          currentPlayer = Icon(Icons.close,color: Colors.white,size: 100,);;
+                        }
+
                         //printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(color: Colors.blue.withOpacity(0.4),borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height:100,
-                        child:   Center(child: Text('${board[2][2]}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50,color: Colors.white ))),
+                        child:   board[2][2],
                       ),
                     ),
                   ),
