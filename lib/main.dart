@@ -69,7 +69,10 @@ bool checkForWin(List<List<String>> board, String player) {
   }
   return false;
 }
+void hightlightCells(String firstBox, String secondBox, String thirdBox){
 
+
+}
 List<List<Icon>> createBoard() {
   //LIST OF LIST OF ICONS
   var boardSize = 3;
@@ -109,229 +112,229 @@ class _TicTacToePageState extends State<TicTacToePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        //backgroundColor: Colors.indigo.shade400,
+      //backgroundColor: Colors.indigo.shade400,
 
         body: Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/cosmos.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text('Tic-Tac-Toe',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 40,
-                  color: Colors.white)),
-          Text('${playerMoveWin[mapchoice]}',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.white70)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    displayTapResult(0, 0);
-
-                    // printBoard(board);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    width: 100,
-                    height: 100,
-                    child: board[0][0],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    displayTapResult(0, 1);
-                    // printBoard(board);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    width: 100,
-                    height: 100,
-                    child: board[0][1],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    displayTapResult(0, 2);
-                    // printBoard(board);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    width: 100,
-                    height: 100,
-                    child: board[0][2],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    displayTapResult(1, 0);
-
-                    //printBoard(board);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    width: 100,
-                    height: 100,
-                    child: board[1][0],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    displayTapResult(1, 1);
-                    //printBoard(board);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    width: 100,
-                    height: 100,
-                    child: board[1][1],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    displayTapResult(1, 2);
-                    // printBoard(board);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    width: 100,
-                    height: 100,
-                    child: board[1][2],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    displayTapResult(2, 0);
-                    // printBoard(board);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    width: 100,
-                    height: 100,
-                    child: board[2][0],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    displayTapResult(2, 1);
-                    // printBoard(board);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    width: 100,
-                    height: 100,
-                    child: board[2][1],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    displayTapResult(2, 2);
-
-                    //printBoard(board);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.4),
-                        borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                    width: 100,
-                    height: 100,
-                    child: board[2][2],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          FlatButton(
-            color: Colors.blue.withOpacity(0.4),
-            onPressed: () {
-              setState(() {
-                board = createBoard();
-                stringboard = createStringBoard();
-                mapchoice = 1;
-                player = 'X';
-                Icon currentPlayer = Icon(
-                  Icons.close,
-                  color: Colors.white,
-                  size: 100,
-                );
-              });
-            },
-            child: Container(
-              width: 150,
-              height: 50,
-              child: Text("Reset",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 40,
-                    color: Colors.white70,
-                  )),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/cosmos.jpg"),
+              fit: BoxFit.cover,
             ),
-          )
-        ],
-      ),
-    ));
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Tic-Tac-Toe',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40,
+                      color: Colors.white)),
+              Text('${playerMoveWin[mapchoice]}',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white70)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        displayTapResult(0, 0);
+
+                        // printBoard(board);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.4),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                        width: 100,
+                        height: 100,
+                        child: AnimatedOpacity(child: board[0][0],opacity: (board[0][0]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        displayTapResult(0, 1);
+                        // printBoard(board);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.4),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                        width: 100,
+                        height: 100,
+                        child: AnimatedOpacity(child: board[0][1],opacity: (board[0][1]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        displayTapResult(0, 2);
+                        // printBoard(board);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.4),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                        width: 100,
+                        height: 100,
+                        child: AnimatedOpacity(child: board[0][2],opacity: (board[0][2]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        displayTapResult(1, 0);
+
+                        //printBoard(board);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.4),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                        width: 100,
+                        height: 100,
+                        child: AnimatedOpacity(child: board[1][0],opacity: (board[1][0]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        displayTapResult(1, 1);
+                        //printBoard(board);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.4),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                        width: 100,
+                        height: 100,
+                        child: AnimatedOpacity(child: board[1][1],opacity: (board[1][1]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        displayTapResult(1, 2);
+                        // printBoard(board);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.4),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                        width: 100,
+                        height: 100,
+                        child: AnimatedOpacity(child: board[1][2],opacity: (board[1][2]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        displayTapResult(2, 0);
+                        // printBoard(board);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.4),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                        width: 100,
+                        height: 100,
+                        child: AnimatedOpacity(child: board[2][0],opacity: (board[2][0]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        displayTapResult(2, 1);
+                        // printBoard(board);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.4),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                        width: 100,
+                        height: 100,
+                        child: AnimatedOpacity(child: board[2][1],opacity: (board[2][1]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        displayTapResult(2, 2);
+
+                        //printBoard(board);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.blue.withOpacity(0.4),
+                            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                        width: 100,
+                        height: 100,
+                        child: AnimatedOpacity(child: board[2][2],opacity: (board[2][2]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              FlatButton(
+                color: Colors.blue.withOpacity(0.4),
+                onPressed: () {
+                  setState(() {
+                    board = createBoard();
+                    stringboard = createStringBoard();
+                    mapchoice = 1;
+                    player = 'X';
+                    Icon currentPlayer = Icon(
+                      Icons.close,
+                      color: Colors.white,
+                      size: 100,
+                    );
+                  });
+                },
+                child: Container(
+                  width: 150,
+                  height: 50,
+                  child: Text("Reset",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                        color: Colors.white70,
+                      )),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 
   void switchPlayer() {
