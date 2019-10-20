@@ -1,88 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'tictactoe_brain.dart';
+
 
 void main() {
   runApp(MaterialApp(
     home: TicTacToePage(),
   ));
-}
-
-void printBoard(List<List<String>> stringboard) {
-  print('   A   B   C ');
-  List<String> rows = stringboard.map(rowToString).toList();
-  print('1 ${rows[0]}');
-  print('  ---+---+---');
-  print('2 ${rows[1]}');
-  print('  ---+---+---');
-  print('3 ${rows[2]}');
-//////////////////////////
-}
-
-bool checkForDraw(List<List<String>> stringboard) {
-  for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < 3; j++) {
-      {
-        if (stringboard[i][j] == ' ' ||
-            stringboard[i][j].isEmpty ||
-            stringboard[i][j] == '') {
-          print("empty box found");
-          return false;
-        }
-      }
-    }
-  }
-  return true;
-}
-
-String rowToString(List<String> row) {
-  return row.map((String val) => ' $val ').join('|');
-}
-
-bool validate(int row, int column, List<List<String>> stringboard) {
-  return stringboard[row][column] == ' ';
-}
-
-bool checkForWin(List<List<String>> board, String player) {
-  for (int i = 0; i <= 2; i++) {
-    if (board[i][0] == player &&
-        board[i][1] == player &&
-        board[i][2] == player) {
-      print("Row Win");
-      return true;
-    }
-  }
-  for (int i = 0; i <= 2; i++) {
-    if (board[0][i] == player &&
-        board[1][i] == player &&
-        board[2][i] == player) {
-      print("column Win");
-      return true;
-    }
-  }
-  if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
-    print("Diagonal Win");
-    return true;
-  }
-  if (board[2][0] == player && board[1][1] == player && board[0][2] == player) {
-    print("Diagonal Win");
-    return true;
-  }
-  return false;
-}
-void hightlightCells(String firstBox, String secondBox, String thirdBox){
-
-
-}
-List<List<Icon>> createBoard() {
-  //LIST OF LIST OF ICONS
-  var boardSize = 3;
-  return List.generate(boardSize, (_) => List.filled(boardSize, null));
-}
-
-List<List<String>> createStringBoard() {
-  //LIST OF LIST OF ICONS
-  var boardSize = 3;
-  return List.generate(boardSize, (_) => List.filled(boardSize, ' '));
 }
 
 class TicTacToePage extends StatefulWidget {
@@ -91,14 +17,16 @@ class TicTacToePage extends StatefulWidget {
 }
 
 class _TicTacToePageState extends State<TicTacToePage> {
-  Icon currentPlayer = Icon(
-    Icons.close,
-    color: Colors.white,
-    size: 100,
-  );
-  String player = 'X';
-  List<List<Icon>> board = createBoard();
-  List<List<String>> stringboard = createStringBoard();
+
+    String currentPlayer = 'X';
+    Token currentToken=Token.x;
+    List<List<Token>> tokenBoard = createBlankTokenBoard();
+    List<List<String>> stringBoard = createBlankStringBoard();
+    int mapchoice = 1;
+
+
+
+   //For TroubleShooting
   Map<int, String> playerMoveWin = {
     1: 'Player X to move',
     2: "Player O to move",
@@ -107,7 +35,23 @@ class _TicTacToePageState extends State<TicTacToePage> {
     5: "Invalid Move",
     6: "Game Drawn"
   };
-  int mapchoice = 1;
+    void gameReset() {
+      stringBoard = [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
+      ];
+      colorBoard = [
+        [Colors.blue.withOpacity(0.4), Colors.blue.withOpacity(0.4),Colors.blue.withOpacity(0.4)],
+        [Colors.blue.withOpacity(0.4), Colors.blue.withOpacity(0.4),Colors.blue.withOpacity(0.4)],
+        [Colors.blue.withOpacity(0.4), Colors.blue.withOpacity(0.4), Colors.blue.withOpacity(0.4)]
+      ];
+      currentPlayer = 'X';
+      currentToken=Token.x;
+      tokenBoard = createBlankTokenBoard();
+      stringBoard = createBlankStringBoard();
+      int mapchoice = 1;
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -141,17 +85,20 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
                       onTap: () {
-                        displayTapResult(0, 0);
+                           displayTapResult(0, 0);
+                           setState(() {
+
+                           });
 
                         // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.4),
+                            color: colorBoard[0][0],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height: 100,
-                        child: AnimatedOpacity(child: board[0][0],opacity: (board[0][0]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                        child: AnimatedOpacity(child: createIconFromToken(tokenBoard[0][0]),opacity: (tokenBoard[0][0]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
                       ),
                     ),
                   ),
@@ -160,15 +107,18 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: () {
                         displayTapResult(0, 1);
+                        setState(() {
+
+                        });
                         // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.4),
+                            color: colorBoard[0][1],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height: 100,
-                        child: AnimatedOpacity(child: board[0][1],opacity: (board[0][1]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                        child: AnimatedOpacity(child: createIconFromToken(tokenBoard[0][1]),opacity: (tokenBoard[0][1]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
                       ),
                     ),
                   ),
@@ -177,15 +127,18 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: () {
                         displayTapResult(0, 2);
+                        setState(() {
+
+                        });
                         // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.4),
+                            color: colorBoard[0][2],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height: 100,
-                        child: AnimatedOpacity(child: board[0][2],opacity: (board[0][2]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                        child: AnimatedOpacity(child: createIconFromToken(tokenBoard[0][2]),opacity: (tokenBoard[0][2]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
                       ),
                     ),
                   ),
@@ -199,16 +152,19 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: () {
                         displayTapResult(1, 0);
+                        setState(() {
+
+                        });
 
                         //printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.4),
+                            color: colorBoard[1][0],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height: 100,
-                        child: AnimatedOpacity(child: board[1][0],opacity: (board[1][0]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                        child: AnimatedOpacity(child: createIconFromToken(tokenBoard[1][0]),opacity: (tokenBoard[1][0]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
                       ),
                     ),
                   ),
@@ -217,15 +173,18 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: () {
                         displayTapResult(1, 1);
+                        setState(() {
+
+                        });
                         //printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.4),
+                            color: colorBoard[1][1],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height: 100,
-                        child: AnimatedOpacity(child: board[1][1],opacity: (board[1][1]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                        child: AnimatedOpacity(child: createIconFromToken(tokenBoard[1][1]),opacity: (tokenBoard[1][1]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
                       ),
                     ),
                   ),
@@ -234,15 +193,18 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: () {
                         displayTapResult(1, 2);
+                        setState(() {
+
+                        });
                         // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.4),
+                            color: colorBoard[1][2],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height: 100,
-                        child: AnimatedOpacity(child: board[1][2],opacity: (board[1][2]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                        child: AnimatedOpacity(child: createIconFromToken(tokenBoard[1][2]),opacity: (tokenBoard[1][2]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
                       ),
                     ),
                   ),
@@ -256,15 +218,18 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: () {
                         displayTapResult(2, 0);
+                        setState(() {
+
+                        });
                         // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.4),
+                            color: colorBoard[2][0],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height: 100,
-                        child: AnimatedOpacity(child: board[2][0],opacity: (board[2][0]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                        child: AnimatedOpacity(child: createIconFromToken(tokenBoard[2][0]),opacity: (tokenBoard[2][0]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
                       ),
                     ),
                   ),
@@ -273,15 +238,18 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: () {
                         displayTapResult(2, 1);
+                        setState(() {
+
+                        });
                         // printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.4),
+                            color: colorBoard[2][1],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height: 100,
-                        child: AnimatedOpacity(child: board[2][1],opacity: (board[2][1]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                        child: AnimatedOpacity(child: createIconFromToken(tokenBoard[2][1]),opacity: (tokenBoard[2][1]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
                       ),
                     ),
                   ),
@@ -290,16 +258,18 @@ class _TicTacToePageState extends State<TicTacToePage> {
                     child: GestureDetector(
                       onTap: () {
                         displayTapResult(2, 2);
+                        setState(() {
 
+                        });
                         //printBoard(board);
                       },
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(0.4),
+                            color: colorBoard[2][2],
                             borderRadius: BorderRadius.all(Radius.circular(10.0))),
                         width: 100,
                         height: 100,
-                        child: AnimatedOpacity(child: board[2][2],opacity: (board[2][2]==null)?0:1,duration: Duration(milliseconds: 1000) ,),
+                        child: AnimatedOpacity(child: createIconFromToken(tokenBoard[2][2]),opacity: (tokenBoard[2][2]==null)?0:1,duration: Duration(milliseconds: 3000) ,),
                       ),
                     ),
                   ),
@@ -309,15 +279,12 @@ class _TicTacToePageState extends State<TicTacToePage> {
                 color: Colors.blue.withOpacity(0.4),
                 onPressed: () {
                   setState(() {
-                    board = createBoard();
-                    stringboard = createStringBoard();
+                    tokenBoard = createBlankTokenBoard();
+                    stringBoard = createBlankStringBoard();
                     mapchoice = 1;
-                    player = 'X';
-                    Icon currentPlayer = Icon(
-                      Icons.close,
-                      color: Colors.white,
-                      size: 100,
-                    );
+                    currentPlayer = 'X';
+                    currentToken=Token.x;
+                    gameReset();
                   });
                 },
                 child: Container(
@@ -338,43 +305,38 @@ class _TicTacToePageState extends State<TicTacToePage> {
   }
 
   void switchPlayer() {
-    if (player == 'X') {
-      player = 'O';
+    if (currentPlayer == 'X') {
+      currentPlayer = 'O';
       mapchoice = 2;
-      currentPlayer = Icon(
-        FontAwesomeIcons.circle,
-        color: Colors.white,
-        size: 100,
-      );
+      currentToken=Token.o;
+
     } else {
-      player = 'X';
+      currentPlayer = 'X';
       mapchoice = 1;
-      currentPlayer = Icon(
-        Icons.close,
-        color: Colors.white,
-        size: 100,
-      );
+      currentToken=Token.x;
+
     }
   }
 
   void displayTapResult(int row, int column) {
-    print(checkForDraw(stringboard));
+    print(checkForDraw(stringBoard));
 
-    if (!validate(row, column, stringboard)) {
+    if (!validate(row, column, stringBoard)) {
       print('Invalid Move');
       setState(() {
         mapchoice = 5;
       });
     } else {
       setState(() {
-        board[row][column] = currentPlayer;
-        stringboard[row][column] = player;
+        tokenBoard[row][column]=currentToken;
+        stringBoard[row][column] = currentPlayer;
       });
-      printBoard(stringboard);
-      if (checkForWin(stringboard, player)) {
+      printBoard(stringBoard);
+
+      if (checkForWin(stringBoard, currentPlayer)) {
         print(" $currentPlayer wins");
 
-        if (player == 'X') {
+        if (currentPlayer == 'X') {
           //code for displaying win
           mapchoice = 3;
         } else {
@@ -386,7 +348,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
 
       switchPlayer();
     }
-    if (checkForDraw(stringboard)) {
+    if (checkForDraw(stringBoard)) {
       setState(() {
         mapchoice = 6;
       });
@@ -395,3 +357,42 @@ class _TicTacToePageState extends State<TicTacToePage> {
     }
   }
 }
+enum Token{
+  x,o
+}
+
+List<List<Token>> createBlankTokenBoard() {
+  //LIST OF LIST OF Tokens
+  var boardSize = 3;
+  return List.generate(boardSize, (_) => List.filled(boardSize, null));
+}
+Widget createIconFromToken(Token t)
+{
+
+  if(t==null)
+
+    return null;
+
+  else if(t==Token.o)
+
+    return Icon(
+      FontAwesomeIcons.circle,
+      color: Colors.white,
+      size: 100,
+    );
+
+  else if (t==Token.x)
+
+    return Icon(
+      Icons.close,
+      color: Colors.white,
+      size: 100,
+    );
+
+}
+List<List<Color>> colorBoard = [
+  [Colors.blue.withOpacity(0.4), Colors.blue.withOpacity(0.4),Colors.blue.withOpacity(0.4)],
+  [Colors.blue.withOpacity(0.4), Colors.blue.withOpacity(0.4),Colors.blue.withOpacity(0.4)],
+  [Colors.blue.withOpacity(0.4), Colors.blue.withOpacity(0.4), Colors.blue.withOpacity(0.4)]
+];
+Color winningColor = Colors.red.withOpacity(0.5);
