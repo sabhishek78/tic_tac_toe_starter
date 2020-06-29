@@ -50,8 +50,8 @@ bool checkForWin(List<List<String>> board, String player) {
       print("Row Win");
 
         colorBoard[i][0]=winningColor;
-      colorBoard[i][1]=winningColor;
-      colorBoard[i][2]=winningColor;
+        colorBoard[i][1]=winningColor;
+        colorBoard[i][2]=winningColor;
       return true;
     }
   }
@@ -60,9 +60,9 @@ bool checkForWin(List<List<String>> board, String player) {
         board[1][i] == player &&
         board[2][i] == player) {
       print("column Win");
-      colorBoard[0][i]=winningColor;
-      colorBoard[1][i]=winningColor;
-      colorBoard[2][i]=winningColor;
+       colorBoard[0][i]=winningColor;
+       colorBoard[1][i]=winningColor;
+       colorBoard[2][i]=winningColor;
       return true;
     }
   }
