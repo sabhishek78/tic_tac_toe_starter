@@ -114,7 +114,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                         child: AnimatedOpacity(
                           child: createIconFromToken(tokenBoard[0][0]),
                           opacity: (tokenBoard[0][0] == null) ? 0 : 1,
-                          duration: Duration(milliseconds: 1000),),
+                          duration: Duration(milliseconds: 3000),),
                       ),
                     ),
                   ),
@@ -141,7 +141,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                         child: AnimatedOpacity(
                           child: createIconFromToken(tokenBoard[0][1]),
                           opacity: (tokenBoard[0][1] == null) ? 0 : 1,
-                          duration: Duration(milliseconds: 1000),),
+                          duration: Duration(milliseconds: 3000),),
                       ),
                     ),
                   ),
@@ -168,7 +168,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                         child: AnimatedOpacity(
                           child: createIconFromToken(tokenBoard[0][2]),
                           opacity: (tokenBoard[0][2] == null) ? 0 : 1,
-                          duration: Duration(milliseconds: 1000),),
+                          duration: Duration(milliseconds: 3000),),
                       ),
                     ),
                   ),
@@ -201,7 +201,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                         child: AnimatedOpacity(
                           child: createIconFromToken(tokenBoard[1][0]),
                           opacity: (tokenBoard[1][0] == null) ? 0 : 1,
-                          duration: Duration(milliseconds: 1000),),
+                          duration: Duration(milliseconds: 3000),),
                       ),
                     ),
                   ),
@@ -228,7 +228,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                         child: AnimatedOpacity(
                           child: createIconFromToken(tokenBoard[1][1]),
                           opacity: (tokenBoard[1][1] == null) ? 0 : 1,
-                          duration: Duration(milliseconds: 1000),),
+                          duration: Duration(milliseconds: 3000),),
                       ),
                     ),
                   ),
@@ -255,7 +255,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                         child: AnimatedOpacity(
                           child: createIconFromToken(tokenBoard[1][2]),
                           opacity: (tokenBoard[1][2] == null) ? 0 : 1,
-                          duration: Duration(milliseconds: 1000),),
+                          duration: Duration(milliseconds: 3000),),
                       ),
                     ),
                   ),
@@ -287,7 +287,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                         child: AnimatedOpacity(
                           child: createIconFromToken(tokenBoard[2][0]),
                           opacity: (tokenBoard[2][0] == null) ? 0 : 1,
-                          duration: Duration(milliseconds: 1000),),
+                          duration: Duration(milliseconds: 3000),),
                       ),
                     ),
                   ),
@@ -314,7 +314,7 @@ class _TicTacToePageState extends State<TicTacToePage> {
                         child: AnimatedOpacity(
                           child: createIconFromToken(tokenBoard[2][1]),
                           opacity: (tokenBoard[2][1] == null) ? 0 : 1,
-                          duration: Duration(milliseconds: 1000),),
+                          duration: Duration(milliseconds: 3000),),
                       ),
                     ),
                   ),
